@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Valden's World</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Password gate -->
+  <div id="lock-screen">
+    <div class="lock-box">
+      <h1>👶 Valden's World</h1>
+      <p>This is a private family page. Enter the password to continue.</p>
+      <input type="password" id="password-input" placeholder="Password" />
+      <button id="unlock-btn">Enter</button>
+      <p id="lock-error">Incorrect password, try again!</p>
+    </div>
+  </div>
+
+  <!-- Main site content (hidden until unlocked) -->
+  <div id="site-content" class="hidden">
+
+    <!-- Hero Section -->
+    <header class="hero">
+      <div class="hero-content">
+        <h1>Welcome to Valden's World</h1>
+        <p>Follow along as our little guy grows, smiles, and discovers the world ✨</p>
+      </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+      <a href="#gallery">Photo Gallery</a>
+      <a href="#milestones">Milestones</a>
+    </nav>
+
+    <!-- Photo Gallery -->
+    <section id="gallery" class="section">
+      <h2>Photo Gallery</h2>
+      <p class="section-subtitle">A few of our favorite moments</p>
+      <div class="gallery-grid" id="gallery-grid">
+        <!-- Photos are added automatically from script.js -->
+      </div>
+    </section>
+
+    <!-- Milestones Timeline -->
+    <section id="milestones" class="section alt-bg">
+      <h2>Milestones</h2>
+      <p class="section-subtitle">Every first is a big deal</p>
+      <div class="timeline" id="timeline">
+        <!-- Milestones are added automatically from script.js -->
+      </div>
+    </section>
+
+    <footer>
+      <p>Made with love for Valden 💙</p>
+    </footer>
+
+  </div>
+
+  <!-- Lightbox for viewing full-size photos -->
+  <div id="lightbox" class="lightbox hidden">
+    <span id="lightbox-close">&times;</span>
+    <img id="lightbox-img" src="" alt="Full size photo" />
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

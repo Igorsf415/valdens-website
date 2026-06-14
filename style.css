@@ -1,0 +1,315 @@
+/* ===========================
+   Basic setup
+   =========================== */
+:root {
+  --color-bg: #fdfaf6;
+  --color-primary: #6c9bcf;
+  --color-accent: #f6b8a2;
+  --color-text: #3a3a3a;
+  --color-text-light: #777;
+  --max-width: 1100px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  background: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.6;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* ===========================
+   Password lock screen
+   =========================== */
+#lock-screen {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #a8c8f0, #f6c9b8);
+  padding: 20px;
+}
+
+.lock-box {
+  background: #fff;
+  border-radius: 16px;
+  padding: 40px 30px;
+  max-width: 360px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.lock-box h1 {
+  margin-bottom: 10px;
+  font-size: 1.8rem;
+}
+
+.lock-box p {
+  color: var(--color-text-light);
+  margin-bottom: 20px;
+  font-size: 0.95rem;
+}
+
+#password-input {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  margin-bottom: 12px;
+}
+
+#unlock-btn {
+  width: 100%;
+  padding: 12px 14px;
+  border: none;
+  border-radius: 8px;
+  background: var(--color-primary);
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+#unlock-btn:hover {
+  background: #5685b8;
+}
+
+#lock-error {
+  display: none;
+  color: #e07a5f;
+  margin-top: 12px;
+  margin-bottom: 0;
+  font-weight: 600;
+}
+
+/* ===========================
+   Hero section
+   =========================== */
+.hero {
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: linear-gradient(135deg, #a8c8f0 0%, #f6c9b8 100%);
+  padding: 40px 20px;
+}
+
+.hero-content h1 {
+  font-size: clamp(2.2rem, 6vw, 4rem);
+  color: #fff;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+  margin-bottom: 16px;
+}
+
+.hero-content p {
+  font-size: clamp(1rem, 2.5vw, 1.4rem);
+  color: #fff;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.15);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* ===========================
+   Navigation
+   =========================== */
+.navbar {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  background: #fff;
+  padding: 16px 20px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.navbar a {
+  color: var(--color-text);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: color 0.2s ease;
+}
+
+.navbar a:hover {
+  color: var(--color-primary);
+}
+
+/* ===========================
+   Sections
+   =========================== */
+.section {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 60px 20px;
+}
+
+.section h2 {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 8px;
+}
+
+.section-subtitle {
+  text-align: center;
+  color: var(--color-text-light);
+  margin-bottom: 40px;
+}
+
+.alt-bg {
+  background: #fff;
+}
+
+/* ===========================
+   Photo gallery
+   =========================== */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.gallery-grid img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.gallery-grid img:hover {
+  transform: scale(1.03);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.gallery-empty {
+  text-align: center;
+  color: var(--color-text-light);
+  grid-column: 1 / -1;
+}
+
+/* ===========================
+   Lightbox
+   =========================== */
+.lightbox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  padding: 20px;
+}
+
+.lightbox img {
+  max-width: 100%;
+  max-height: 90vh;
+  border-radius: 8px;
+}
+
+#lightbox-close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  color: #fff;
+  font-size: 2.5rem;
+  cursor: pointer;
+  line-height: 1;
+}
+
+/* ===========================
+   Milestones timeline
+   =========================== */
+.timeline {
+  max-width: 700px;
+  margin: 0 auto;
+  position: relative;
+  padding-left: 30px;
+  border-left: 3px solid var(--color-accent);
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 32px;
+  padding-left: 24px;
+}
+
+.timeline-item::before {
+  content: "";
+  position: absolute;
+  left: -39px;
+  top: 4px;
+  width: 16px;
+  height: 16px;
+  background: var(--color-primary);
+  border: 3px solid #fff;
+  border-radius: 50%;
+  box-shadow: 0 0 0 2px var(--color-accent);
+}
+
+.timeline-date {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 4px;
+}
+
+.timeline-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.timeline-desc {
+  color: var(--color-text-light);
+}
+
+/* ===========================
+   Footer
+   =========================== */
+footer {
+  text-align: center;
+  padding: 30px 20px;
+  color: var(--color-text-light);
+  font-size: 0.9rem;
+}
+
+/* ===========================
+   Responsive tweaks
+   =========================== */
+@media (max-width: 480px) {
+  .navbar {
+    gap: 18px;
+    font-size: 0.85rem;
+  }
+
+  .section {
+    padding: 40px 16px;
+  }
+
+  .gallery-grid img {
+    height: 160px;
+  }
+}
