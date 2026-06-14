@@ -5,12 +5,12 @@
 // 1. Change this to whatever password you want family members to use.
 const SITE_PASSWORD = "valden2026";
 
-// 2. Add your photos here. Just put the image files in the /images folder
-//    and add a line below with the filename and a short caption.
-const PHOTOS = [
-  // { file: "valden-hospital.jpg", caption: "The day we met you" },
-  // { file: "first-smile.jpg", caption: "First smile" },
-];
+// 2. These tell the site where to look for your photos on GitHub.
+//    If you ever rename the repo or your GitHub username changes,
+//    update these two values.
+const GITHUB_OWNER = "Igorsf415";
+const GITHUB_REPO = "valdens-website";
+const GITHUB_BRANCH = "main";
 
 // 3. Add milestones here. They will show up in date order automatically.
 //    date: any text is fine, e.g. "March 2026" or "Day 1"
@@ -57,19 +57,46 @@ if (sessionStorage.getItem("valden-unlocked") === "true") {
    ===================================================================== */
 
 const galleryGrid = document.getElementById("gallery-grid");
+const IMAGE_FILE_PATTERN = /\.(jpe?g|png|gif|webp|heic|avif)$/i;
 
-if (PHOTOS.length === 0) {
-  galleryGrid.innerHTML = '<p class="gallery-empty">No photos yet — add some to the /images folder and list them in script.js!</p>';
-} else {
-  PHOTOS.forEach((photo) => {
+// Turn "first-steps.jpg" into "First steps"
+function captionFromFilename(filename) {
+  const name = filename.replace(IMAGE_FILE_PATTERN, "");
+  const spaced = name.replace(/[-_]+/g, " ").trim();
+  return spaced.charAt(0).toUpperCase() + spaced.slice(1);
+}
+
+function renderGallery(photos) {
+  if (photos.length === 0) {
+    galleryGrid.innerHTML = '<p class="gallery-empty">No photos yet — just drag some into the /images folder on GitHub and they\'ll show up here!</p>';
+    return;
+  }
+
+  galleryGrid.innerHTML = "";
+  photos.forEach((photo) => {
     const img = document.createElement("img");
-    img.src = `images/${photo.file}`;
-    img.alt = photo.caption || "Valden photo";
+    img.src = photo.src;
+    img.alt = photo.caption;
     img.loading = "lazy";
     img.addEventListener("click", () => openLightbox(img.src));
     galleryGrid.appendChild(img);
   });
 }
+
+// Ask GitHub what files are currently in the /images folder, so new photos
+// show up automatically — no code editing required!
+fetch(`https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/images?ref=${GITHUB_BRANCH}`)
+  .then((res) => res.json())
+  .then((files) => {
+    const photos = (Array.isArray(files) ? files : [])
+      .filter((file) => file.type === "file" && IMAGE_FILE_PATTERN.test(file.name))
+      .sort((a, b) => a.name.localeCompare(b.name))
+      .map((file) => ({ src: file.download_url, caption: captionFromFilename(file.name) }));
+    renderGallery(photos);
+  })
+  .catch(() => {
+    galleryGrid.innerHTML = '<p class="gallery-empty">Couldn\'t load photos right now. If you just added some, try refreshing in a minute.</p>';
+  });
 
 /* Lightbox (click a photo to view it bigger) */
 const lightbox = document.getElementById("lightbox");

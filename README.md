@@ -15,18 +15,18 @@ A simple, private website to share photos and milestones of baby Valden with fam
 
 ## How to add new photos (no coding required!)
 
-1. Drag your photo files into the `images/` folder. Use simple names with no spaces, e.g. `first-steps.jpg`.
-2. Open `script.js` in any text editor (TextEdit, Notepad, VS Code, etc.).
-3. Find the `PHOTOS` list near the top and add a line for each photo:
+The site automatically shows every photo in the `images/` folder — you don't need to edit any files.
 
-   ```js
-   const PHOTOS = [
-     { file: "first-steps.jpg", caption: "First steps in the garden" },
-     { file: "birthday.jpg", caption: "Happy 1st birthday!" },
-   ];
-   ```
+1. Go to your repository on GitHub: `https://github.com/Igorsf415/valdens-website`
+2. Click into the `images` folder.
+3. Click **Add file → Upload files**.
+4. Drag in your photo(s). Use simple names with no spaces, e.g. `first-steps.jpg` (the name is also used as the caption, so `first-steps.jpg` becomes "First steps").
+5. Click **Commit changes**.
+6. Wait about a minute, then refresh the live site — your new photo appears in the gallery automatically!
 
-4. Save the file. Refresh the page in your browser — your photo now appears in the gallery!
+> Tip: You can also do this from your phone using the GitHub mobile app or mobile browser — handy for uploading photos straight from your camera roll.
+
+> Note: Because the gallery loads the photo list from GitHub, it only works on the live (published) site — not when opening `index.html` directly from your computer.
 
 ## How to add a new milestone
 
